@@ -1,6 +1,7 @@
 using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages;
+using Mvc.Bootstrap.Datatables;
 
 [assembly: PreApplicationStartMethod(typeof(Mvc.Bootstrap.Datatables.Example.App_Start.RegisterDatatablesModelBinder), "Start")]
 
