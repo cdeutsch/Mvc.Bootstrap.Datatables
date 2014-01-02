@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Car List";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table data-table table-bordered table-read-status" data-ajaxsource="@Url.Action("index")">
+    <thead>
+        <tr>
+            <th>
+                Year
+            </th>
+            <th>
+                Name
+            </th>
+            <th data-template="tmpActions"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="6" class="dataTables_empty">
+                Loading data from server
+            </td>
+        </tr>
+    </tbody>
+</table>
+@*underscore.js templates used for table cells *@
+<script id="tmpActions" type="text/template">
+    <a href="@Url.Action("details/")<%=Id%>">Details</a>
+</script>
+
+@section scripts {
+    <script type="text/javascript">
+        var $dataTable = $('.data-table').dataTable({
+            "aaSorting": [[1, "desc"]], // default sort to Name
+            "aoColumnDefs": [
+                { "aTargets": [0], "mData": "Year" },
+                { "aTargets": [1], "mData": "Name" },
+                { "aTargets": [2], "mData": null, "bSortable": false } // disable sorting of actions column
+            ]
+        });
+    </script>
+}
